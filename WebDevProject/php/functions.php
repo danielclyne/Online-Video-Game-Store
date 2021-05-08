@@ -1,30 +1,25 @@
 <?php
-function component($productImage, $productName, $productDescription, $previousProductPrice, $currentProductPrice, $productId)
+function productsCard($productImage, $productName, $productDescription, $productPreviousPrice, $productCurrentPrice, $productId)
 {
     $element = "
 <div class='col-md-3 col-sm-6 my-3-md-0 mt-3'>
-                <form action='products.php' method='post'>
-                    <div class='card shadow'>
+                <form action='php/manageBasket.php' method='POST'>
+                    <div class='card shadow text-center' onclick='getProductInfo($productId)'>
                         <div>
                             <img src='$productImage' alt='Product Image' class='img-fluid card-img-top cardImageStyle'>
                         </div>
                         <div class='card-body'>
-                            <h5 class='card-title'>$productName</h5>
-                            <h6>
-                                <i class='fas fa-star'></i>
-                                <i class='fas fa-star'></i>
-                                <i class='fas fa-star'></i>
-                                <i class='fas fa-star'></i>
-                                <i class='far fa-star'></i>
-                            </h6>
+                            <h4 class='card-title productNameColour'>$productName</h4>
                             <p class='card-text'>$productDescription</p>
                             <h5>
-                                <small><s class='text-secondary'>€$previousProductPrice</s></small>
-                                <span class='price'>€$currentProductPrice</span>
+                                <small><s class='text-secondary'>€$productPreviousPrice</s></small>
+                                <span class='price'>€$productCurrentPrice</span>
                             </h5>
                             <button type='submit' class='btn btn-warning my-3' name='addToBasket'>Add to Basket <i class='fas fa-shopping-basket'></i>
                             </button>
-                            <input type='hidden' name='productId' value='$productId'>
+                            <input type='hidden' name='productImage' value='$productImage'>
+                            <input type='hidden' name='productName' value='$productName'>
+                            <input type='hidden' name='productPrice' value='$productCurrentPrice'>
                         </div>
                     </div>
                 </form>
@@ -33,7 +28,7 @@ function component($productImage, $productName, $productDescription, $previousPr
     echo $element;
 }
 
-function basketElement($productImage, $productName, $currentProductPrice, $productId)
+function basketElement($productImage, $productName, $productCurrentPrice, $productId)
 {
     $element = "
     <form action='basket.php?action=remove&productId=$productId' method='post'>
@@ -44,7 +39,7 @@ function basketElement($productImage, $productName, $currentProductPrice, $produ
             </div>
             <div class='col-md-6 py-4'>
                 <h5 class='mt-2'>$productName</h5>
-                <h5 class='mt-2'>€$currentProductPrice</h5>
+                <h5 class='mt-2'>€$productCurrentPrice</h5>
                 <button type='submit' class='btn btn-danger mt-2' name='remove'>Remove</button>
             </div>
             <div class='col-md-3 py-5'>

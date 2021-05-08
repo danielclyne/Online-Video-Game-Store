@@ -1,11 +1,11 @@
-.navbarRight {
-margin-right: 20px;
-}
-
 .bg-dark {
 background-color: #0070d1!important;
 }
 
 body{
     background-color: #dee2e6;
+}
+
+.shadow:hover {
+    box-shadow: 0 .5rem 1rem rgba(0, 112, 209, 0.8)!important;
 }

@@ -1,18 +1,14 @@
-<?php
-session_start();
-?>
-
 <!doctype html>
 <html lang="en">
 
 <head>
-  <?php require_once("headLinks.html"); ?>
+  <?php include("headLinks.html"); ?>
   <link rel="stylesheet" href="style/home.css">
   <title>Gamer Kingdom</title>
 </head>
 
 <body>
-  <?php require_once("php/header.php"); ?>
+  <?php include("navbar.php"); ?>
 
   <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
     <ol class="carousel-indicators">
@@ -26,6 +22,8 @@ session_start();
         <div class="carousel-caption d-none d-md-block carouselCaptionRight">
           <h1>Resident Evil Village</h1>
           <h3>Prepare for horror!</h3>
+          <br>
+          <h3>Available in our Online Shop!</h3>
         </div>
       </div>
       <div id="carouselSlider2" class="carousel-item">
@@ -36,10 +34,12 @@ session_start();
         </div>
       </div>
       <div id="carouselSlider3" class="carousel-item">
-        <img src="images/carousel/mLB21Big.jpg" class="mx-auto d-block img-fluid" alt="Carousel Image">
+        <img src="images/carousel/fifaTwentyOneBig.jpg" class="mx-auto d-block img-fluid" alt="Carousel Image">
         <div class="carousel-caption d-none d-md-block carouselCaptionLeftTop">
-          <h1>MLB The Show 21</h1>
+          <h1>Fifa 21</h1>
           <h3>It's in the game!</h3>
+          <br>
+          <h3>Available in our Online Shop!</h3>
         </div>
       </div>
     </div>
@@ -59,7 +59,6 @@ session_start();
         </div>
       </li>
       <li class="media my-4">
-
         <div class="media-body">
           <h4 class="mt-0 mb-1">Study Reveals Gaming Health Benefits</h4>
           <p>Maybe a reason why all the doors are closed. Cause once you’re mine, once you’re mine. Be your teenage dream tonight. Heavy is the head that wears the crown. It's not even a holiday, nothing to celebrate. A perfect storm, perfect storm. All my girls vintage Chanel baby. So you can have your cake. Tonight, tonight, tonight, I'm walking on air. Slowly swallowing down my fear, yeah yeah. Growing fast into a bolt of lightning. So hot and heavy, 'Til dawn. That fairy tale ending with a knight in shining armor. Heavy is the head that wears the crown.</p>
@@ -76,9 +75,6 @@ session_start();
     </ul>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
   <script>
     document.addEventListener("DOMContentLoaded", function(event) {
       var num = Math.floor(Math.random() * 3) + 1;
@@ -94,6 +90,10 @@ session_start();
       }
     });
   </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

@@ -8,8 +8,10 @@ if (isset($_POST['submit'])) {
     $password = $_POST['pwd'];
     $passwordRepeat = $_POST['pwdRepeat'];
 
-    require_once("usersDB.php");
+    require_once("database.php");
     require_once("functions.php");
+
+    $connection = connectToDB();
 
     if (emptyInputRegister($name, $email, $username, $password, $passwordRepeat) !== false) {
         header("location: ../register.php?error=emptyInput");

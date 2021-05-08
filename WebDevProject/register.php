@@ -1,20 +1,16 @@
-<?php
-session_start();
-?>
-
 <!doctype html>
 <html lang="en">
 
 <head>
-    <?php require_once("headLinks.html"); ?>
+    <?php include("headLinks.html"); ?>
     <title>Register</title>
 </head>
 
 <body>
-    <?php require_once("php/header.php"); ?>
+<?php include("navbar.php"); ?>
 
     <section>
-        <h2>Sign Up</h2>
+        <h2>Register</h2>
         <form action="php/registerInc.php" method="post">
             <input type="text" name="name" placeholder="Enter name...">
             <input type="text" name="email" placeholder="Enter email...">
@@ -28,10 +24,10 @@ session_start();
         if (isset($_GET["error"])) {
             if ($_GET["error"] == "emptyInput") {
                 echo "<p>Fill in all fields!<p>";
-            } else if ($_GET["error"] == "invalidUsername") {
-                echo "<p>Choose a proper username!<p>";
             } else if ($_GET["error"] == "invalidEmail") {
                 echo "<p>Choose a proper email!<p>";
+            } else if ($_GET["error"] == "invalidUsername") {
+                echo "<p>Choose a proper username!<p>";
             } else if ($_GET["error"] == "passwordMatchFalse") {
                 echo "<p>Passwords don't match!<p>";
             } else if ($_GET["error"] == "usernameEmailTaken") {

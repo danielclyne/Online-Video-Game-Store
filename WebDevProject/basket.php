@@ -1,87 +1,97 @@
-<?php
-session_start();
-require_once('php/productsDB.php');
-require_once('php/functions.php');
-
-if (isset($_POST['remove'])) {
-    if ($_GET['action'] == 'remove') {
-        foreach ($_SESSION['basket'] as $key => $value) {
-            if ($value['productId'] == $_GET['productId']) {
-                unset($_SESSION['basket'][$key]);
-                echo "<script>alert('Product has been removed!')</script>";
-                echo "<script>window/location = 'basket.php'</script>";
-            }
-        }
-    }
-}
-?>
-
 <!doctype html>
 <html lang="en">
 
 <head>
-    <?php require_once("headLinks.html"); ?>
+    <?php include("headLinks.html"); ?>
     <link rel="stylesheet" href="style/basket.css">
     <title>Shopping Basket</title>
 </head>
 
 <body>
-    <?php require_once("php/header.php"); ?>
+    <?php include("navbar.php"); ?>
 
-    <div class="container-fluid">
-        <div class="row px-5">
-            <div class="col-md-7">
-                <div class="shoppingBasket">
-                    <h6>My Basket</h6>
-                    <hr>
-                    <?php
-                    $total = 0;
-                    if (isset($_SESSION['basket'])) {
-                        $productId = array_column($_SESSION['basket'], 'productId');
-                        $result = getData();
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            foreach ($productId as $id) {
-                                if ($row['productId'] == $id) {
-                                    basketElement($row['productImage'], $row['productName'], $row['currentProductPrice'], $row['productId']);
-                                    $total = $total + $row['currentProductPrice'];
-                                }
-                            }
-                        }
-                    } else {
-                        echo "<h5>Basket currently empty!</h5>";
-                    }
-                    ?>
-                </div>
+    <div class="container">
+        <div class="row my-3">
+            <div class="col-md-12 text-center">
+                <h2>My Shopping Basket</h2>
             </div>
-            <div class="col-md-4 offset-md-1 border rounded mt-5 bg-white h-25 pr-5">
-                <div class="pt-4">
-                    <h6>PRICE DETAILS</h6>
-                    <hr>
-                    <div class="row priceDetails">
-                        <div class="col-md-6">
-                            <?php
-                            if (isset($_SESSION['basket'])) {
-                                $count = count($_SESSION['basket']);
-                                echo "<h6>Price($count items)</h6>";
-                            } else {
-                                echo "<h6>Price(0 items)</h6>";
-                            }
-                            ?>
-                            <h6>Delivery Charges</h6>
-                            <hr>
-                            <h6>Amount Payable</h6>
-                        </div>
-                        <div class="col-md-6">
-                            <h6>€<?php echo $total ?></h6>
-                            <h6 class="text-success">FREE</h6>
-                            <hr>
-                            <h6>€<?php echo $total ?></h6>
-                        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <?php
+                if (isset($_SESSION['basket'])) {
+                    foreach ($_SESSION['basket'] as $key => $value) {
+                        echo "<div class='border rounded my-1'>
+                                     <div class='row bg-white'>
+                                         <div class='col-md-3'>
+                                                 <img src='$value[productImage]' alt='Product Image' class='img-fluid my-1'>
+                                             </div>
+                                                <div class='col-md-5 my-3 text-center'>
+                                                    <h5>$value[productName]</h5>
+                                                    <h5>€$value[productPrice]<input type='hidden' class='singleProdPrice' value='$value[productPrice]'></h5>
+                                                    <form action='php/manageBasket.php' method='POST'>
+                                                    <button name ='removeProduct' class='btn btn-sm btn-outline-danger'>REMOVE</button>
+                                                     <input type='hidden' name='productName' value='$value[productName]'>
+                                                    </form>
+                                                </div>
+                                                    <div class='col-md-4 my-1 text-center'>
+                                                        <h3><input class='productQty text-center my-3' onchange='subTotal()' type='number' value='$value[quantity]' min='1' style='width: 80px'></h3>
+                                                        <h3 class='productTotal'></h3>
+                                                    </div>
+                                    </div>
+                            </div>
+                         ";
+                    }
+                }
+                ?>
+            </div>
+            <div class="col-md-4 offset-md-1 border rounded bg-white h-25">
+                <div class="row">
+                    <div class="col-md-12 my-2">
+                        <h4>Order Details:</h4>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Grand Total:</h6>
+                        <h6>Delivery:</h6>
+
+                    </div>
+                    <div class="col-md-6">
+                    <h6 class="text-success">FREE</h6>
+                        <h5 id="grandTotal"></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form>
+                            <button class="btn btn-primary btn-block my-2">Make Purchase</button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+
+    <script>
+        var grandTotal = 0;
+        var singleProdPrice = document.getElementsByClassName('singleProdPrice');
+        var productQty = document.getElementsByClassName('productQty');
+        var productTotal = document.getElementsByClassName('productTotal');
+        var gTotal = document.getElementById('grandTotal');
+
+        function subTotal() {
+            grandTotal = 0;
+            for (i = 0; i < singleProdPrice.length; i++) {
+                productTotal[i].innerText = "€" + (singleProdPrice[i].value) * (productQty[i].value);
+
+                grandTotal = grandTotal + (singleProdPrice[i].value) * (productQty[i].value);
+            }
+            gTotal.innerText = "€" + grandTotal;
+        }
+        subTotal();
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

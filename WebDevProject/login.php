@@ -1,17 +1,13 @@
-<?php
-session_start();
-?>
-
 <!doctype html>
 <html lang="en">
 
 <head>
-    <?php require_once("headLinks.html"); ?>
+    <?php include("headLinks.html"); ?>
     <title>Login</title>
 </head>
 
 <body>
-    <?php require_once("php/header.php"); ?>
+    <?php include("navbar.php"); ?>
 
     <section>
         <h2>Login</h2>
