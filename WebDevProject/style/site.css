@@ -1,11 +1,72 @@
+/* Sets the background color of the navbar on all pages */
 .bg-dark {
 background-color: #0070d1!important;
 }
 
+/* Sets the background color of the body on all pages */
 body{
     background-color: #dee2e6;
 }
 
+/* Sets shadow color and pop out when pointer hovers over the product cards */
 .shadow:hover {
     box-shadow: 0 .5rem 1rem rgba(0, 112, 209, 0.8)!important;
+}
+
+/* Sets the font color of all h4 headings */
+h4 {
+    color: #0070d1;
+}
+
+/* Sets the color of the gamepad  icon in the site logo to white.
+(Same icon used in different color elsewhere) */
+.gamePadIcon {
+    color: white!important;
+}
+
+/* Sets the carousel caption position */
+.carouselCaptionRightMid{
+    right: 5%;
+    bottom: 40%;
+    left: initial;
+}
+
+/* Sets the carousel caption position */
+.carouselCaptionLeftMid{
+    left: 15%;
+    bottom: 45%;
+    right: initial;
+}
+
+/* Sets the carousel caption position */
+.carouselCaptionRightLow{
+    right: 12%;
+    bottom: 20%;
+    left: initial;
+}
+
+/* Sets the color of the star and half star icons for product ratings in the product info modal */
+.fa-star,
+.fa-star-half-alt {
+    color: #ffc107;
+}
+
+/* Sets the gamepad color for number of players in the product info modal */
+.fa-gamepad {
+    color:rgba(0, 162, 255, 0.966);
+}
+
+/* Sets the previous price color in the product card */
+.text-secondary  {
+    color: red!important;
+}
+
+/* Sets the current price color in the product card */
+.price {
+    color: green;
+}
+
+/* Sets the product info modal background color */
+.modalColour {
+    background-color: #dee2e6;
 }

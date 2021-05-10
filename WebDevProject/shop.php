@@ -27,19 +27,20 @@
 
     <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalColour">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h4 class="modal-title" id="modalLabel"></h4>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
                 <div class="modal-body">
-                    <iframe id="modalProductTrailer" width="560" height="315" src="" title="Product Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe id="modalProductTrailer" class="embed-responsive-item" width="560" height="315" src="" allowfullscreen></iframe>
+                    </div>
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                <div>
+                    <p class="pl-4" id="modalStarRating"></p>
+                    <p class="pl-4" id="modalNumPlayers"></p>
                 </div>
             </div>
         </div>
@@ -49,6 +50,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
     <script>
+        $('.card').tooltip({
+            boundary: 'window'
+        })
+
         function getProductInfo(productId) {
             $.ajax({
                 type: "POST",
@@ -62,7 +67,9 @@
         }
 
         function populatProductInfoModal(data) {
-
+            document.getElementById("modalLabel").innerText = data.productName;
+            document.getElementById("modalStarRating").innerHTML = "Star Rating: " + data.starRating;
+            document.getElementById("modalNumPlayers").innerHTML = "No. of Players: " + data.numPlayers;
             if (data.productTrailer) {
                 document.getElementById("modalProductTrailer").style.display = "block";
                 document.getElementById("modalProductTrailer").src = data.productTrailer;
@@ -72,6 +79,10 @@
             setTimeout(function() {
                 $('#productModal').modal('show');
             }, 300);
+            $("#productModal").on('hidden.bs.modal', function(e) {
+                $("#productModal iframe").attr(document.getElementById("modalProductTrailer").src = data.productTrailer,
+                    $("#productModal iframe").attr(document.getElementById("modalProductTrailer").src = data.productTrailer));
+            });
         }
     </script>
 

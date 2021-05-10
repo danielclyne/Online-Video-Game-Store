@@ -4,12 +4,12 @@ function productsCard($productImage, $productName, $productDescription, $product
     $element = "
 <div class='col-md-3 col-sm-6 my-3-md-0 mt-3'>
                 <form action='php/manageBasket.php' method='POST'>
-                    <div class='card shadow text-center' onclick='getProductInfo($productId)'>
+                    <div class='card shadow text-center' data-toggle='tooltip' data-placement='left' title='Click for more Info!' onclick='getProductInfo($productId)'>
                         <div>
                             <img src='$productImage' alt='Product Image' class='img-fluid card-img-top cardImageStyle'>
                         </div>
                         <div class='card-body'>
-                            <h4 class='card-title productNameColour'>$productName</h4>
+                            <h4 class='card-title'>$productName</h4>
                             <p class='card-text'>$productDescription</p>
                             <h5>
                                 <small><s class='text-secondary'>€$productPreviousPrice</s></small>

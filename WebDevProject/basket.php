@@ -3,7 +3,6 @@
 
 <head>
     <?php include("headLinks.html"); ?>
-    <link rel="stylesheet" href="style/basket.css">
     <title>Shopping Basket</title>
 </head>
 
@@ -48,7 +47,7 @@
             <div class="col-md-4 offset-md-1 border rounded bg-white h-25">
                 <div class="row">
                     <div class="col-md-12 my-2">
-                        <h4>Order Details:</h4>
+                        <h5>Order Details:</h5>
                     </div>
                 </div>
                 <div class="row">
@@ -59,7 +58,7 @@
                     </div>
                     <div class="col-md-6">
                     <h6 class="text-success">FREE</h6>
-                        <h5 id="grandTotal"></h5>
+                        <h6 id="grandTotal"></h6>
                     </div>
                 </div>
                 <div class="row">
